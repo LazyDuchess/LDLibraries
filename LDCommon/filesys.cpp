@@ -19,6 +19,18 @@ namespace FileSys
 
     std::wstring GetAbsolutePathAuto(std::wstring path)
     {
+        if (wcslen(path.c_str()) > 1)
+        {
+            if (wcscmp(path.substr(1, 1).c_str(), L":") == 0)
+                return path;
+        }
+        std::wstring directory = GetModuleDirectory();
+        wchar_t modName[MAX_PATH] = { 0 };
+        wcscpy_s(modName, directory.c_str());
+        wcscat_s(modName, L"\\");
+        wcscat_s(modName, path.c_str());
+        return modName;
+        /*
         if (Exists(path))
             return path;
         std::wstring directory = GetModuleDirectory();
@@ -28,6 +40,6 @@ namespace FileSys
         wcscat_s(modName, path.c_str());
         if (Exists(modName))
             return modName;
-        return path;
+        return path;*/
     }
 }
