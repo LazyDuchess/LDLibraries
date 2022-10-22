@@ -46,3 +46,10 @@ std::wstring TrimString(std::wstring str, bool removeQuotes) {
 	}
 	return finalString;
 }
+
+bool IsEmpty(std::wstring str) {
+	std::wstring trimmed = TrimString(str, false);
+	if (wcscmp(trimmed.c_str(), L"") == 0)
+		return true;
+	return false;
+}
