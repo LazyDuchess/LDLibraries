@@ -5,11 +5,11 @@
 #include <sstream>
 #include <vector>
 #include "stringhelper.h"
-#include "filesys.h"
+#include <filesystem>
 
 ConfigObject::ConfigObject(std::wstring file, bool& result)
 {
-    if (!FileSys::Exists(file))
+    if (!std::filesystem::exists(file))
     {
         result = false;
         return;
